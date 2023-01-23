@@ -18,10 +18,22 @@ plus long argument: argument3
 #include <stdio.h>
 
 int main(int argc, char* argv[]){	
-    int i;
-    for(i = 1; i < argc; i++){
-        
-    }  
+    int i, j;
+    int min = 0, max = 0;
+    int min_index = 0, max_index = 0;
+    for (i = 1; i < argc; i++){
+        for (j = 0; argv[i][j] != '\0'; j++);
+        if (min == 0 || j < min){
+            min = j;
+            min_index = i;
+        }
+        if (max == 0 || j > max){
+            max = j;
+            max_index = i;
+        }
+    }
 
+    printf("plus court argument: %s\n", argv[min_index]);
+    printf("plus long argument: %s\n", argv[max_index]);
     return 0;
 }
